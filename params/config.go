@@ -61,6 +61,8 @@ var (
 	OptimismMainnetGenesisHash = libcommon.HexToHash("0x7ca38a1916c42007829c55e69d3e9a73265554b586a499015373241b8a3fa48b")
 	OptimismGoerliGenesisHash  = libcommon.HexToHash("0xc1fc15cd51159b1f1e5cbc4b82e85c1447ddfa33c52cf1d98d14fba0d6354be1")
 	OptimismDevnetGenesisHash  = libcommon.HexToHash("0x1c16b5a055ff0197544b96f1375bf6be35ec478e23a95093cfe01902d821c22a")
+	BaseMainnetGenesisHash     = libcommon.HexToHash("0xf712aa9241cc24369b143cf6dce85f0902a9731e70d66818a3a5845b296c73dd")
+	BaseGoerliGenesisHash      = libcommon.HexToHash("0xa3ab140f15ea7f7443a4702da64c10314eb04d488e72974e02e2d728096b4f76")
 )
 
 var (
@@ -136,6 +138,10 @@ var (
 	GnosisChainConfig = readChainSpec("chainspecs/gnosis.json")
 
 	ChiadoChainConfig = readChainSpec("chainspecs/chiado.json")
+
+	BaseMainnetChainConfig = readChainSpec("chainspecs/base-mainnet.json")
+
+	BaseGoerliChainConfig = readChainSpec("chainspecs/base-goerli.json")
 
 	CliqueSnapshot = NewSnapshotConfig(10, 1024, 16384, true, "")
 
@@ -221,6 +227,10 @@ func ChainConfigByChainName(chain string) *chain.Config {
 		return GnosisChainConfig
 	case networkname.ChiadoChainName:
 		return ChiadoChainConfig
+	case networkname.BaseMainnetChainName:
+		return BaseMainnetChainConfig
+	case networkname.BaseGoerliChainName:
+		return BaseGoerliChainConfig
 	default:
 		return nil
 	}
@@ -250,6 +260,10 @@ func GenesisHashByChainName(chain string) *libcommon.Hash {
 		return &GnosisGenesisHash
 	case networkname.ChiadoChainName:
 		return &ChiadoGenesisHash
+	case networkname.BaseMainnetChainName:
+		return &BaseMainnetGenesisHash
+	case networkname.BaseGoerliChainName:
+		return &BaseGoerliGenesisHash
 	default:
 		return nil
 	}
@@ -279,6 +293,10 @@ func ChainConfigByGenesisHash(genesisHash libcommon.Hash) *chain.Config {
 		return GnosisChainConfig
 	case genesisHash == ChiadoGenesisHash:
 		return ChiadoChainConfig
+	case genesisHash == BaseMainnetGenesisHash:
+		return BaseMainnetChainConfig
+	case genesisHash == BaseGoerliGenesisHash:
+		return BaseGoerliChainConfig
 	default:
 		return nil
 	}

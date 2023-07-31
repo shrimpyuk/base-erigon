@@ -353,6 +353,38 @@ func GenesisWithAccounts(db kv.RwDB, accs []GenAccount, tmpDir string) *types.Bl
 	return block
 }
 
+func BaseMainnetGenesisBlock() *types.Genesis {
+	return &types.Genesis{
+		Config:     params.BaseMainnetChainConfig,
+		Nonce:      0,
+		ExtraData:  []byte("all your base are belong to you."),
+		GasLimit:   30000000,
+		Difficulty: big.NewInt(0),
+		Mixhash:    libcommon.HexToHash("0x0000000000000000000000000000000000000000000000000000000000000000"),
+		Coinbase:   libcommon.HexToAddress("0x4200000000000000000000000000000000000011"),
+		Timestamp:  1686789347,
+		ParentHash: libcommon.HexToHash("0x0000000000000000000000000000000000000000000000000000000000000000"),
+		BaseFee:    big.NewInt(1000000000),
+		Alloc:      readPrealloc("allocs/base_mainnet.json"),
+	}
+}
+
+func BaseGoerliGenesisBlock() *types.Genesis {
+	return &types.Genesis{
+		Config:     params.BaseGoerliChainConfig,
+		Nonce:      0,
+		ExtraData:  []byte("BEDROCK"),
+		GasLimit:   25000000,
+		Difficulty: big.NewInt(0),
+		Mixhash:    libcommon.HexToHash("0x0000000000000000000000000000000000000000000000000000000000000000"),
+		Coinbase:   libcommon.HexToAddress("0x4200000000000000000000000000000000000011"),
+		Timestamp:  1686789347,
+		ParentHash: libcommon.HexToHash("0x0000000000000000000000000000000000000000000000000000000000000000"),
+		BaseFee:    big.NewInt(1000000000),
+		Alloc:      readPrealloc("allocs/base_goerli.json"),
+	}
+}
+
 // MainnetGenesisBlock returns the Ethereum main net genesis block.
 func MainnetGenesisBlock() *types.Genesis {
 	return &types.Genesis{
@@ -681,6 +713,10 @@ func GenesisBlockByChainName(chain string) *types.Genesis {
 		return GnosisGenesisBlock()
 	case networkname.ChiadoChainName:
 		return ChiadoGenesisBlock()
+	case networkname.BaseMainnetChainName:
+		return BaseMainnetGenesisBlock()
+	case networkname.BaseGoerliChainName:
+		return BaseGoerliGenesisBlock()
 	default:
 		return nil
 	}

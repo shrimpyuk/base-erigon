@@ -13,6 +13,8 @@ const (
 	OptimismDevnetChainName  = "optimism-devnet"
 	OptimismMainnetChainName = "optimism-mainnet"
 	OptimismGoerliChainName  = "optimism-goerli"
+	BaseMainnetChainName     = "base-mainnet"
+	BaseGoerliChainName      = "base-goerli"
 )
 
 var All = []string{
@@ -26,6 +28,8 @@ var All = []string{
 	ChiadoChainName,
 	OptimismGoerliChainName,
 	OptimismDevnetChainName,
+	BaseMainnetChainName,
+	BaseGoerliChainName,
 }
 
 // OptimismMainnetChainName is excluded due to genesis alloc mismatch:

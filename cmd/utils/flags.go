@@ -1077,7 +1077,7 @@ func setEtherbase(ctx *cli.Context, cfg *ethconfig.Config) {
 		}
 	}
 
-	if slices.Contains([]string{networkname.DevChainName, networkname.BorDevnetChainName, networkname.OptimismDevnetChainName}, ctx.String(ChainFlag.Name)) {
+	if slices.Contains([]string{networkname.DevChainName, networkname.BorDevnetChainName, networkname.OptimismDevnetChainName, networkname.BaseGoerliChainName}, ctx.String(ChainFlag.Name)) {
 		if etherbase == "" {
 			cfg.Miner.SigKey = core.DevnetSignPrivateKey
 			cfg.Miner.Etherbase = core.DevnetEtherbase
